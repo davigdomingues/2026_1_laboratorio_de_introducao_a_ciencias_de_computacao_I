@@ -1,0 +1,38 @@
+# Arquivos YAML
+*.yml
+*.yaml
+
+# Arquivos objeto e executáveis C/C++
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.dylib
+
+# Executáveis Unix (sem extensão) - padrão universal
+# Ignora tudo na pasta, exceto arquivos fonte (.c e .h), documentação (.md, .txt, .pdf), pastas (!*/) e o próprio .gitignore
+*
+!*.c
+!*.h
+!*.cpp
+!*.hpp
+!*.md
+!*.txt
+!*.pdf
+!.gitignore
+!*/
+
+# Debug symbols (macOS)
+*.dSYM/
+*.dSYM
+
+# Arquivos plist
+*.plist
+
+# Arquivos de build
+*.d
+*.su
+*.i
+*.s
