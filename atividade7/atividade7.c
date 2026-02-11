@@ -3,11 +3,12 @@
 
 int main() {
     int a, b, c; // coeficientes inteiros conforme especificado no enunciado
+    double delta;
 
     if (scanf("%d %d %d", &a, &b, &c) != 3) // lê três números inteiros
         return 1;
 
-    double delta = pow(b, 2) - 4 * a * c; // calcula o discriminante (delta) da equação quadrática
+    delta = pow(b, 2) - 4 * a * c; // calcula o discriminante (delta) da equação quadrática
 
     if (delta < 0) // Delta negativo: não existem raízes reais
         printf("NAO EXISTE RAIZ REAL\n");
