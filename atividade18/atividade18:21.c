@@ -29,6 +29,8 @@ int main() {
 
     // Lê no máximo qtdQuestoes caracteres (sem contar '\0'), independente de ser 10, 7, etc.
     char fmt[32]; // buffer para armazenar a string de formato para scanf, garantindo que seja grande o suficiente para acomodar a quantidade de questões
+    
+    // a leitura " %%%ds" é feita para criar um formato dinâmico que se adapta à quantidade de questões, garantindo que o scanf leia exatamente a quantidade de caracteres esperada para o gabarito e as respostas dos alunos
     snprintf(fmt, sizeof fmt, " %%%ds", qtdQuestoes); // cria a string de formato dinamicamente, por exemplo, se qtdQuestoes for 10, fmt será " %10s"
 
     if (scanf(fmt, gabarito) != 1) { // lê o gabarito usando o formato criado. se a leitura falhar, libera a memória alocada e termina o programa
