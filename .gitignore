@@ -1,9 +1,28 @@
-# Arquivos de sistema operacional
+### --- BLOQUEIO GERAL --- ###
+# Ignora tudo por padrão
+*
+# Permite que o Git entre em subpastas (necessário para as exceções funcionarem)
+!*/
+
+### --- EXCEÇÕES (Arquivos Permitidos) --- ###
+!*.c
+!*.h
+!*.cpp
+!*.hpp
+!*.md
+!*.txt
+!*.pdf
+!*.png
+!.gitignore
+
+### --- REGRAS ESPECÍFICAS DE SISTEMA (Sempre ignorar) --- ###
 # macOS
 .DS_Store
 .AppleDouble
 .LSOverride
 ._*
+*.dSYM/
+*.dSYM
 
 # Windows
 Thumbs.db
@@ -15,11 +34,9 @@ $RECYCLE.BIN/
 .directory
 .Trash-*
 
-# Arquivos YAML
+### --- ARQUIVOS DE BUILD E TEMPORÁRIOS (Sempre ignorar) --- ###
 *.yml
 *.yaml
-
-# Arquivos objeto e executáveis C/C++
 *.o
 *.obj
 *.exe
@@ -27,34 +44,8 @@ $RECYCLE.BIN/
 *.a
 *.so
 *.dylib
-
-# Executáveis Unix (sem extensão) - padrão universal
-# Ignora tudo na pasta, exceto arquivos fonte (.c e .h), documentação (.md, .txt, .pdf), pastas (!*/) e o próprio .gitignore
-*
-!*.c
-!*.h
-!*.cpp
-!*.hpp
-!*.md
-!*.txt
-!*.pdf
-!*.png
-!.gitignore
-!*/
-
-# Debug symbols (macOS)
-*.dSYM/
-*.dSYM
-*.DS_Store
-
-# Arquivos plist
 *.plist
-
-# Arquivos de build
 *.d
 *.su
 *.i
 *.s
-
-# Pastas de saída geradas pelos exercícios (leitura de .md e de figuras)
-resultado/
