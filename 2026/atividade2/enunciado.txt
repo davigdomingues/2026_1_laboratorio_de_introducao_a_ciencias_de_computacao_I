@@ -1,0 +1,1 @@
+Faça um programa em linguagem C que receba 3 números como entrada e mostre o maior deles. Se houver números iguais, imprima "Ha numeros iguais" (sem aspas).

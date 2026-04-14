@@ -1,0 +1,1 @@
+Escreva um programa em C que receba como entrada 2 números e retorne o maior deles. Se os dois números forem iguais, retorne "igual" (sem aspas)
