@@ -38,6 +38,7 @@ $RECYCLE.BIN/
 !*.md
 !*.txt
 !*.pdf
+!*.png
 !.gitignore
 !*/
 
