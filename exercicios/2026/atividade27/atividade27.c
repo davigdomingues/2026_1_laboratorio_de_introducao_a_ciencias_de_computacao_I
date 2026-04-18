@@ -1,17 +1,22 @@
 #include <stdio.h>
 
 int main() {
-    char mensagem[50], c;
-    scanf("%s", mensagem);
-
-    // Manipulação da tabela ASCII
-    for (int i = 0; mensagem[i] != '\0'; i++) {
-        c = mensagem[i];
-        if (c >= 'a' &&  c <= 'z') mensagem[i] = 'z' - (c - 'a'); // Inverte minúsculas
-        else if (c >= 'A' && c <= 'Z') mensagem[i] = 'Z' - (c - 'A'); // Inverte maiúsculas
+    char nome1[19], nome2[19];
+    int i;
+    
+    scanf("%s", nome1);
+    scanf("%s", nome2);
+    
+    for (i = 0; nome1[i] != '\0' && nome2[i]; i++) {
+        if (nome1[i] != nome2[i]) {
+            printf("Nao sou eu");
+            return 0;
+        }
     }
-
-    printf("%s\n", mensagem);
-
+    
+    // verificação se ambos os nomes se encerraram juntos (evita falso positivo)
+    if (nome1[i] == '\0' && nome2[i] == '\0') printf("Sou eu");
+    else printf("Nao sou eu");
+    
     return 0;
 }
