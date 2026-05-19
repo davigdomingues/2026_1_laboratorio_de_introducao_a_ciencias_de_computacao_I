@@ -1,25 +1,33 @@
 #include <stdio.h>
+#include <string.h>
+
+void inverter_palavra(char *inicio, char *fim) {
+    while (inicio < fim) {
+        char temp = *inicio;
+        *inicio = *fim;
+        *fim = temp;
+        inicio++;
+        fim--;
+    }
+}
 
 int main() {
-    int n, p, m; // n: tamanho do tabuleiro, p: posição inicial, m: número de dados lançados
-    scanf("%d %d %d", &n, &p, &m);
+    char mensagem[210]; // array de caracteres para a mensagem
+    fgets(mensagem, sizeof(mensagem), stdin); // lê a mensagem do usuário
 
-    int tabuleiro[n]; // array de inteiros para o tabuleiro
-    for (int i = 0; i < n; i++) scanf("%d", &tabuleiro[i]);
+    int tamanho = strlen(mensagem); // obtém o tamanho da mensagem
+    if (tamanho > 0 && mensagem[tamanho - 1] == '\n') mensagem[tamanho - 1] = '\0'; // remove o caractere de nova linha, se presente
 
-    int dados[m]; // array de inteiros para os dados
-    for (int i = 0; i < m; i++) scanf("%d", &dados[i]);
+    char *inicio = mensagem; // ponteiro para o início da mensagem
 
-    int *atual = tabuleiro + p; // ponteiro para a posição atual
-    int *limite = tabuleiro + n; // ponteiro para o final do tabuleiro
-    long long saldo = 0; // saldo acumulado
-
-    for (int i = 0; i < m; i++) {
-        atual += dados[i]; // incrementa a posição atual pelo valor do dado
-        if (atual >= limite) atual = tabuleiro + (atual - tabuleiro) % n;
-        saldo += *atual; // adiciona o valor da posição atual ao saldo
+    for (char *p = mensagem; ; p++) { // loop para percorrer a mensagem
+        if (*p == ' ' || *p == '\0') { // se encontrar um espaço ou o final da mensagem
+            if (p > inicio) inverter_palavra(inicio, p - 1);
+            if (*p == '\0') break; // se encontrar o final da mensagem, sai do loop
+            inicio = p + 1; // atualiza o ponteiro para o início da próxima palavra
+        }
     }
 
-    printf("%lld", saldo);
+    printf("%s\n", mensagem);
     return 0;
 }

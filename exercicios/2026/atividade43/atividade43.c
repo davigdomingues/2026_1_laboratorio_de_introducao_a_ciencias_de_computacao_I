@@ -1,15 +1,19 @@
 #include <stdio.h>
 
 int main() {
-    int n; // n: número de valores
+    int n; // tamanho do array
     scanf("%d", &n);
 
-    int valores[n]; // array de valores
-    for (int i = 0; i < n; i++) scanf("%d", &valores[i]);
+    int b[1000], k[1000]; // arrays para armazenar os valores de b e k
 
-    long long soma = 0;
-    for (int i = 0; i < (n + 1) / 2; i++) soma += (long long)valores[i] * valores[n - 1 - i]; // soma os valores dos elementos do array
+    for (int i = 0; i < n; i++) // loop para ler os valores de b
+        scanf("%d", &b[i]);
 
-    printf("%lld", soma);
+    for (int i = 0; i < n; i++)
+        k[i] = b[i] + (i > 0 ? b[i - 1] : 0) + (i < n - 1 ? b[i + 1] : 0);
+
+    for (int i = 0; i < n; i++)
+        printf("%d%c", k[i], i < n - 1 ? ' ' : '\n'); // imprime o valor de k[i]
+
     return 0;
 }

@@ -1,44 +1,25 @@
-#include <ctype.h>
 #include <stdio.h>
-#include <string.h>
-
-static int eh_vogal(unsigned char c) {
-    c = (unsigned char)tolower((int)c);
-    return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
-}
-
-static void s_para_t(char *b) {
-    for (; *b != '\0'; b++) {
-        if (eh_vogal((unsigned char)*b))
-            *b = (char)toupper((unsigned char)*b);
-    }
-}
-
-static void t_para_r(char **c) {
-    char *p = *c;
-    for (; *p != '\0'; p++) {
-        if (isalpha((unsigned char)*p) && !eh_vogal((unsigned char)*p))
-            *p = (char)tolower((unsigned char)*p);
-    }
-}
 
 int main() {
-    char a[128];
-    char *b = a; // ponteiro para o array a
-    char **c = &b; // ponteiro para o ponteiro b
+    int n, p, m; // n: tamanho do tabuleiro, p: posição inicial, m: número de dados lançados
+    scanf("%d %d %d", &n, &p, &m);
 
-    if (fgets(a, (int)sizeof(a), stdin) == NULL)
-        return 0;
+    int tabuleiro[n]; // array de inteiros para o tabuleiro
+    for (int i = 0; i < n; i++) scanf("%d", &tabuleiro[i]);
 
-    size_t n = strlen(a);
-    if (n > 0 && a[n - 1] == '\n')
-        a[--n] = '\0';
+    int dados[m]; // array de inteiros para os dados
+    for (int i = 0; i < m; i++) scanf("%d", &dados[i]);
 
-    s_para_t(b);
-    printf("%s\n", a);
+    int *atual = tabuleiro + p; // ponteiro para a posição atual
+    int *limite = tabuleiro + n; // ponteiro para o final do tabuleiro
+    long long saldo = 0; // saldo acumulado
 
-    t_para_r(c);
-    printf("%s\n", a);
+    for (int i = 0; i < m; i++) {
+        atual += dados[i]; // incrementa a posição atual pelo valor do dado
+        if (atual >= limite) atual = tabuleiro + (atual - tabuleiro) % n;
+        saldo += *atual; // adiciona o valor da posição atual ao saldo
+    }
 
+    printf("%lld", saldo);
     return 0;
 }

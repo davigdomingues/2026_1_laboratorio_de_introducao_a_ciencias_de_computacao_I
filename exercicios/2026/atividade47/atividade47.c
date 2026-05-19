@@ -1,33 +1,27 @@
 #include <stdio.h>
-#include <string.h>
-
-void inverter_palavra(char *inicio, char *fim) {
-    while (inicio < fim) {
-        char temp = *inicio;
-        *inicio = *fim;
-        *fim = temp;
-        inicio++;
-        fim--;
-    }
-}
 
 int main() {
-    char mensagem[210]; // array de caracteres para a mensagem
-    fgets(mensagem, sizeof(mensagem), stdin); // lê a mensagem do usuário
+    int n, c; // n: número de moedas, c: valor do troco
+    scanf("%d %d", &n, &c);
 
-    int tamanho = strlen(mensagem); // obtém o tamanho da mensagem
-    if (tamanho > 0 && mensagem[tamanho - 1] == '\n') mensagem[tamanho - 1] = '\0'; // remove o caractere de nova linha, se presente
+    int moedas[n]; // array de moedas
+    for (int i = 0; i < n; i++) scanf("%d", &moedas[i]);
 
-    char *inicio = mensagem; // ponteiro para o início da mensagem
+    int esquerda = 0, direita = n - 1;
+    while (esquerda < direita) { // loop para encontrar as moedas que somam o valor c
+        int soma = moedas[esquerda] + moedas[direita]; // soma das moedas nas posições esquerda e direita
+        if (soma == c) { // se a soma das moedas nas posições esquerda e direita for igual ao valor c, imprime as moedas e retorna 0
+            printf("%d %d\n", moedas[esquerda], moedas[direita]);
+            return 0;
+        } 
+        
+        else if (soma < c) // se a soma das moedas nas posições esquerda e direita for menor do que o valor c, incrementa a posição esquerda
+            esquerda++;
 
-    for (char *p = mensagem; ; p++) { // loop para percorrer a mensagem
-        if (*p == ' ' || *p == '\0') { // se encontrar um espaço ou o final da mensagem
-            if (p > inicio) inverter_palavra(inicio, p - 1);
-            if (*p == '\0') break; // se encontrar o final da mensagem, sai do loop
-            inicio = p + 1; // atualiza o ponteiro para o início da próxima palavra
-        }
+        else // se a soma das moedas nas posições esquerda e direita for maior do que o valor c, decrementa a posição direita
+            direita--;
     }
 
-    printf("%s\n", mensagem);
+    printf("Sem troco exato");
     return 0;
 }
