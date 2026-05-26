@@ -22,6 +22,6 @@ int main() {
             direita--;
     }
 
-    printf("Sem troco exato");
+    printf("Sem troco exato.");
     return 0;
 }
