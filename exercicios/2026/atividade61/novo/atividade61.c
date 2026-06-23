@@ -16,12 +16,12 @@ int main() {
     FILE *arquivo = fopen(nome_arquivo, "r");
     if (!arquivo) return 1;
 
-    double n1, n2, n3, n4, nota_final, melhor_nota = -1.0, pior_nota = 11.0, soma_total_geral = 0.0;
+    float n1, n2, n3, n4, nota_final, melhor_nota = -1.0, pior_nota = 11.0, soma_total_geral = 0.0;
     char codigo[256], melhor_codigo[256] = "", pior_codigo[256] = "";
     int aprovados = 0, total_alunos = 0;
 
     // Processamento do CSV linha por linha
-    while (fscanf(arquivo, " %[^,],%lf,%lf,%lf,%lf", codigo, &n1, &n2, &n3, &n4) == 5) {
+    while (fscanf(arquivo, " %[^,],%f,%f,%f,%f", codigo, &n1, &n2, &n3, &n4) == 5) {
         nota_final = (n1 + n2 + n3 + n4) / 4.0; 
 
         // Maior nota: em caso de empate, o uso de '>' estrito mantém o primeiro lido
@@ -48,13 +48,13 @@ int main() {
     if (total_alunos == 0) return 0;
 
     // Cálculo da porcentagem e média geral
-    double porcentagem_aprovacao = ((double)aprovados/total_alunos)*100.0, media_geral = soma_total_geral/total_alunos;
+    float porcentagem_aprovacao = ((float)aprovados/total_alunos)*100.0, media_geral = soma_total_geral/total_alunos;
 
     // Impressão exata das quatro linhas solicitadas, delegando o arredondamento ao printf
-    printf("%s %.1lf\n", melhor_codigo, melhor_nota);
-    printf("%s %.1lf\n", pior_codigo, pior_nota);
-    printf("%.2lf%%\n", porcentagem_aprovacao);
-    printf("%.1lf\n", media_geral);
+    printf("%s %.1f\n", melhor_codigo, melhor_nota);
+    printf("%s %.1f\n", pior_codigo, pior_nota);
+    printf("%.2f%%\n", porcentagem_aprovacao);
+    printf("%.1f\n", media_geral);
 
     return 0;
 }
